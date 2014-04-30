@@ -11,5 +11,11 @@ CVTCRideShare::Application.routes.draw do
       get 'results'
     end
   end
+  
+  resources :request do
+    member do
+      get 'book'
+    end
+  end
 
 end
