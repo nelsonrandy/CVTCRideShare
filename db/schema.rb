@@ -11,27 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429163717) do
+ActiveRecord::Schema.define(version: 20140427202840) do
 
-  create_table "admins", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-
-  create_table "request", force: true do |t|
+  create_table "requests", force: true do |t|
     t.integer "ride_id"
     t.integer "user_id"
     t.boolean "confirmed", default: false
@@ -67,7 +49,6 @@ ActiveRecord::Schema.define(version: 20140429163717) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "preferences"
-    t.integer  "roles_mask"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
