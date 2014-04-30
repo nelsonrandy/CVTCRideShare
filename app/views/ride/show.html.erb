@@ -42,7 +42,7 @@
   <tr>
     <td><%= @ride.Start_Address %></td> <td><%= @ride.End_Address %></td> <td><%= @ride.Time %></td>
     <td><%= @ride.seat_count %></td> <td><%= @ride.preferences %></td> <td><%= @ride.price %></td>
-    <td><%= link_to "Book Ride", :controller=>"/request", :action=>"book" %>
+    <td><%= link_to "Book Ride", :controller => "/request", :action => "book", :id => @ride.id %></td>
   </tr>
 </table>
 <div id="map_canvas" style="height:400px; width:400px;"></div>
