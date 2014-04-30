@@ -1,18 +1,30 @@
-<h3>Results</h3>
-<p>Your search found <%= @ride.length %> rides</p>
-<table>
-  <tr>
-    <th>Start Address</th><th>End Address</th><th>Date</th><th>Seat</th><th>Preferences</th><th>Price</th>
-  </tr>
-<% @ride.each do |ride| %>
-  <tr>
-    <td><%= ride.Start_Address %></td> <td><%= ride.End_Address %></td> <td><%= ride.Time %></td>
-    <td><%= ride.seat_count %></td> <td><%= ride.preferences %></td> <td><%= ride.price %></td>
-    <td><%=link_to "Book", :controller=>"/ride", :action=>"book", :id=>"ride_id" %></td>
+<div class="page-header">
+  <h3>Results</h3>
+</div>
 
-    <% if user_signed_in? && current_user.id == ride.Driver_ID %>
-    <td><%= link_to "Edit", edit_ride_path(ride) %></td>
+<div class="panel panel-primary">
+  <div class="panel-heading">Your search found <%= @ride.length %> rides</div>
+  
+  <div class="list-group">
+    <% @ride.each do |ride| %>
+      <%= link_to ride, {:class => "list-group-item"} do %>
+        <div class="media">
+          <%= image_tag("driver_default.png", class: "media-object pull-left", alt: "Diver Image", size: "50") %>
+          <div class="pull-right">
+            Price per seat <%= number_to_currency(ride.price) %>
+          </div>
+          <div class="media-body"> 
+            <h3 class="media-heading"><%= ride.Start_Address %> - <%= ride.End_Address %></h3>
+            <%= ride.Time.strftime("Departs %l:%M%p")%> 
+          </div>
+
+        </div>
+      <% end %>
     <% end %>
-  </tr>
-<% end %>
-</table>
+  </div>
+</div>
+<%# @ride.each do |ride| Ride.start_address, ride.end_address, ride.time, ride.seat_count, ride.preferences, ride.price, if user_signed_in? and current_user.id == ride.driver_id add link to edit (link_to "Edit", edit_ride_path(ride))    %>
+
+
+
+
