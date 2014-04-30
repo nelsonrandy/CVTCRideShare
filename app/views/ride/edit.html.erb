@@ -25,6 +25,4 @@
 <%= f.text_field :price %><br/>
 
 <%= f.submit "Update" %> 
-<% if can! :delete, @rides -%>
-<%= f.submit "Delete" %>
 <% end -%>
