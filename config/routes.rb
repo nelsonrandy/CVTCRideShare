@@ -17,6 +17,5 @@ CVTCRideShare::Application.routes.draw do
       get 'book'
     end
   end
-  
 
 end

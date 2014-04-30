@@ -16,15 +16,18 @@ class RequestController < ApplicationController
   def book
     #currently book does not work. fake it
     ride_id = params[:id] ? params[:id] : 7
+
     @ride = Ride.find(ride_id)
+
     #send the email after creating the record
     if RideRequestMailer.ride_request(ride_id, current_user.id).deliver
       flash[:notice] = 'A ride request email has been to the driver, you will be notified when accepted.'
     else
       flash[:notice] = 'An internal error occured, unable to send confirmation email.'
     end
-    
+
     redirect_to @ride    
+
   end
   
 end

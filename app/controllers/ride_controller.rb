@@ -14,8 +14,6 @@ class RideController < ApplicationController
     
   end
   
-  
-  
   def results
     @ride = Ride.search params
   end
