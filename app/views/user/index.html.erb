@@ -1,0 +1,13 @@
+<h4> all users page </h4>
+<table>
+  <tr>
+    <th>User Email</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= link_to('Edit', edit_user_path(user) )  %></td>
+     <!--  <td><%= link_to "Delete", registration_path(user), data: { confirm: "Are you sure?" }, method: :delete %></td> -->
+    </tr>
+  <% end %>
+</table>

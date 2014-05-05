@@ -1,8 +1,8 @@
 class RideController < ApplicationController
-   before_filter :authenticate_user!, :only => [:show]
+  before_filter :authenticate_user!, :only => [:show, :index]
   
   def index
-    @ride = Ride.all
+    @rides = current_user.rides
   end
 
   def show
@@ -45,7 +45,7 @@ class RideController < ApplicationController
     end 
   end
 
-  def delete
+  def destroy
     @ride = Ride.find(params[:id])
     if @ride.delete_attributes(ride_params)
       flash[:notice] = 'Ride was successfully deleted.'

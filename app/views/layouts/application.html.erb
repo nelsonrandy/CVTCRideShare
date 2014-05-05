@@ -13,17 +13,31 @@
       </header>
       <section class="nav">
         <nav> 
+          
+          <!-- Unauthenticated Navigation -->
           <%=link_to "Home", root_url %> |
           <%=link_to "Ride Search", :controller=>"/ride", :action=>"search" %> |
+          
+          <!-- User Links -->
           <% if user_signed_in? %>
             <%=link_to "New Ride", :controller=>"/ride", :action=>"new" %> |
+            <%= link_to('Manage Rides', :controller=>"ride", :action=>"index") %> |
+          
+            <!-- Administrator Links -->
+            <% if current_user.admin? %>
+              <%=link_to "Manage Users", :controller=>"/user", :action=>"index" %> | 
+            <% end %>   
+          
             <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %> |
             <%= link_to('Edit registration', edit_user_registration_path) %> |
+          <!-- Unauth cont. Links -->
           <% else %>
             <%= link_to('Login', new_user_session_path)  %> |
             <%= link_to('Register', new_user_registration_path)  %> |
           <% end %>
+          
         </nav>
+        
         <% if notice %>
           <p class="alert alert-success"><%= notice %></p>
         <% end %>
