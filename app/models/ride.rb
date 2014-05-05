@@ -1,4 +1,6 @@
 class Ride < ActiveRecord::Base
+  belongs_to :user, foreign_key: "Driver_ID"
+  has_many :requests
   validates_presence_of :Start_Address, :End_Address, :Time
 
   
