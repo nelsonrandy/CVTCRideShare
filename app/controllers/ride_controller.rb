@@ -8,15 +8,6 @@ class RideController < ApplicationController
   def show
     @ride = Ride.find(params[:id])
     @markers = @ride.getStartEndCoordinates
-    @requests = @ride.requests
-    @booked = false
-    @requests.each do |request|
-      if request.user_id == current_user.id
-        @booked = true
-      end
-    end
-    
-    
   end
 
   def search
@@ -47,7 +38,7 @@ class RideController < ApplicationController
   def update
     @ride = Ride.find(params[:id])
     if @ride.update_attributes(ride_params)
-      flash[:notice] = 'Ride was successfully updated.'
+      flash[:notice] = 'Your ride was successfully updated.'
       redirect_to @ride
     else
       render :action => 'edit'
