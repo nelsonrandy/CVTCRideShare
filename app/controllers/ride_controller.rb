@@ -8,6 +8,15 @@ class RideController < ApplicationController
   def show
     @ride = Ride.find(params[:id])
     @markers = @ride.getStartEndCoordinates
+    @requests = @ride.requests
+    @booked = false
+    @requests.each do |request|
+      if request.user_id == current_user.id
+        @booked = true
+      end
+    end
+    
+    
   end
 
   def search
