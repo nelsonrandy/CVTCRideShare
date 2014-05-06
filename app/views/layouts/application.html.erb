@@ -8,9 +8,20 @@
 </head>
   <body>
     <div class="container">
+      <h5>Welcome 
+        <% if user_signed_in? %> <%= current_user.email %>. <br />
+      </h5>
+      <h6>
+        If you are not <%= current_user.email %>, <%= link_to "Click Here", destroy_user_session_path, :method => :delete %>
+        <% else %>
+        You are visiting as a guest, you must <%= link_to('login', new_user_session_path)  %> to view all the details.
+        <% end %>
+      </h6>
+      
       <header>
         <h1>CVTC RideShare</h1>
       </header>
+      
       <section class="nav">
         <nav> 
           
@@ -21,7 +32,7 @@
           <!-- User Links -->
           <% if user_signed_in? %>
             <%=link_to "New Ride", :controller=>"/ride", :action=>"new" %> |
-            <%= link_to('Manage Rides', :controller=>"ride", :action=>"index") %> |
+          <%= link_to('Manage Rides', :controller=>"/ride", :action=>"index") %> |
           
             <!-- Administrator Links -->
             <% if current_user.admin? %>

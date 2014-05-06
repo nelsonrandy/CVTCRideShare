@@ -1,13 +1,18 @@
 <h3>Manage My Rides</h3>
-<p>You own <%= @rides.length %> rides</p>
+
+<% if current_user.rides && @rides.length != 0 %>
+<p><%= current_user.email %>, you own <%= @rides.length %> rides</p>
 <table>
   <tr>
     <th>Start Address</th><th>End Address</th><th>Date</th><th>Seat</th><th>Preferences</th><th>Price</th>
   </tr>
-<% @rides.each do |ride| %>
-  <tr>
-    <td><%= ride.Start_Address %></td> <td><%= ride.End_Address %></td> <td><%= ride.Time %></td>
-    <td><%= ride.seat_count %></td> <td><%= ride.preferences %></td> <td><%= ride.price %></td> <td><%= link_to "Edit", edit_ride_path(ride) %></td>
-  </tr>
+  <% @rides.each do |ride| %>
+    <tr>
+      <td><%= ride.Start_Address %></td> <td><%= ride.End_Address %></td> <td><%= ride.Time %></td>
+      <td><%= ride.seat_count %></td> <td><%= ride.preferences %></td> <td><%= ride.price %></td> <td><%= link_to "Edit", edit_ride_path(ride) %></td>
+    </tr>
+  <% end %>
+<% else %>
+  <p><%= current_user.email %>, you do not have any rides</p>
 <% end %>
 </table>
